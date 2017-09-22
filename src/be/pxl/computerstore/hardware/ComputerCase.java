@@ -2,19 +2,13 @@ package be.pxl.computerstore.hardware;
 
 import be.pxl.computerstore.util.Dimension;
 
-public class ComputerCase {
-	
-	private String vendor;
-	private String name;
-	private double price;
+public class ComputerCase extends ComputerPart {
+
 	private Dimension dimension;
 	private double weight;
 
 	public ComputerCase(String vendor, String name, double price) {
-		super();
-		this.vendor = vendor;
-		this.name = name;
-		this.price = price;
+		super(vendor,name, price);
 	}
 
 	public Dimension getDimension() {
@@ -32,22 +26,4 @@ public class ComputerCase {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-
-	public String getVendor() {
-		return vendor;
-	}
-
-	
-	public String getName() {
-		return name;
-	}
-
-	
-	public double getPrice() {
-		return price;
-	}
-
-	
-	
-	
 }
