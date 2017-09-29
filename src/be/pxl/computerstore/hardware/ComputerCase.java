@@ -26,4 +26,14 @@ public class ComputerCase extends ComputerPart {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+	
+	public String toString() {
+		String result = super.toString();
+		result = result
+				+"\n"+"Width = "+dimension.getWidth()+"mm"
+				+"\n"+"Height = "+dimension.getHeight()+"mm"
+				+"\n"+"Depth = "+dimension.getDepth()+"mm"
+				+"\n"+"Weight = "+weight+"kg";
+		return result;
+	}
 }

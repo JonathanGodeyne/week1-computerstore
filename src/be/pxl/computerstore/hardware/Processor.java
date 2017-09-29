@@ -25,5 +25,11 @@ public class Processor extends ComputerPart {
 			return 0.7;
 		}
 	}
+	public String toString() {
+		String result = super.toString();
+		result = result
+				+"\n"+"Clock speed = "+clockspeed+"GHz";
+		return result;
+	}
 
 }

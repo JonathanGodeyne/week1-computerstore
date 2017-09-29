@@ -7,13 +7,39 @@ public abstract class ComputerPart {
 	public String name;
 	public double price;
 	public String articleNumber;
-	static int number;//random number maken en ophogen met 1
+	static int number;
 
 	public ComputerPart(String vendor, String name, double price) {
 		this.vendor = vendor;
 		this.name = name;
 		this.price = price;
+		number = number++;
+		this.articleNumber = FirstArticleNumber(vendor);
+	}
 
+	private String FirstArticleNumber(String vendor2) {
+		String articleNumberVendor = vendor;
+		String numberString = String.format("%05d", number);
+
+		while (articleNumberVendor.length() < 3) {
+			articleNumberVendor = articleNumberVendor + "X";
+		}
+		articleNumberVendor = (articleNumberVendor.substring(0, 3)).toUpperCase();
+
+		Random randomNumber = new Random();
+		int last1 = randomNumber.nextInt(9) + 1;
+		int last2 = randomNumber.nextInt(9) + 1;
+		int last3 = randomNumber.nextInt(9) + 1;
+		String uniqueNumber = last1 + "" + last2 + "" + last3;
+
+		StringBuilder builder = new StringBuilder();
+		builder.append(articleNumberVendor);
+		builder.append("-");
+		builder.append(numberString);
+		builder.append("-");
+		builder.append(uniqueNumber);
+		String result = builder.toString();
+		return result;
 	}
 
 	public String getVendor() {
@@ -44,21 +70,28 @@ public abstract class ComputerPart {
 		return articleNumber;
 	}
 
-	public void setArticleNumber(String vendor) {
-		while (vendor.length() < 3) {
-			vendor = vendor + "X";
-		}
-		vendor = vendor.substring(0, 3);
-		
-		Random randomNumber = new Random();
-		int uniqueNumber = randomNumber.nextInt(1000);
-		String number = String.format("%05d", uniqueNumber);
-		int last1 = randomNumber.nextInt(9)+1;
-		int last2 = randomNumber.nextInt(9)+1;
-		int last3 = randomNumber.nextInt(9)+1;
-		
-		
-		this.articleNumber = vendor+"-"+number+"-"+;
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ArticleNumber = ").append(articleNumber).append("\n");
+		builder.append("Vendor = ").append(vendor).append("\n");
+		builder.append("Name = ").append(name).append("\n");
+		builder.append("Price = ").append(price).append("\n");
+		String text = builder.toString();
+		return text;
+	}
 
+	public String getShortDescription() {
+		String result;
+		String className = this.getClass().getSimpleName();
+		if (className.matches("Keyboard|GamingController|Monitor|Mouse|WebCam")) {
+			result = this.getArticleNumber() + " * " + className + " * " + this.getName() + " * " + this.getPrice()
+					+ "€";
+		} else
+
+		{
+			result = this.getArticleNumber() + " * " + this.getName() + " * " + this.getPrice() + "€";
+		}
+
+		return result;
 	}
 }

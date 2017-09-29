@@ -1,7 +1,7 @@
 package be.pxl.computerstore.data;
 
 import be.pxl.computerstore.hardware.ComputerCase;
-import be.pxl.computerstore.hardware.ComputerComponent;
+import be.pxl.computerstore.hardware.ComputerPart;
 import be.pxl.computerstore.hardware.GamingController;
 import be.pxl.computerstore.hardware.HardDisk;
 import be.pxl.computerstore.hardware.Keyboard;
@@ -14,7 +14,7 @@ import be.pxl.computerstore.util.Dimension;
 
 public class Warehouse {
 	
-	public static ComputerComponent[] computerComponents;
+	public static ComputerPart[] computerParts;
 	
 	
 	static {
@@ -52,7 +52,7 @@ public class Warehouse {
 		GamingController controller1 = new GamingController("Logitech", "F310 Gamepad", 29.40);
 		GamingController controller2 = new GamingController("Thrustmaster", "Ferrari 458 Italia", 77.55);
 
-		computerComponents = new ComputerComponent[] { computerCase1, computerCase2, computerCase3, hd1, hd2, hd3, processor1,
+		computerParts = new ComputerPart[] { computerCase1, computerCase2, computerCase3, hd1, hd2, hd3, processor1,
 				processor2, azerty, azerty2, qwerty, mouse1, mouse2, webcam1, monitor, monitor2, controller1,
 				controller2 };
 	}

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import be.pxl.computerstore.data.Warehouse;
 import be.pxl.computerstore.hardware.ComputerCase;
-import be.pxl.computerstore.hardware.ComputerComponent;
+import be.pxl.computerstore.hardware.ComputerPart;
 import be.pxl.computerstore.hardware.ComputerSystem;
 import be.pxl.computerstore.hardware.Peripheral;
 import be.pxl.computerstore.hardware.Processor;
@@ -12,7 +12,7 @@ import be.pxl.computerstore.util.TooManyPeripheralsException;
 
 public class ComputerSystemConfigurator {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TooManyPeripheralsException {
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println("Stel hier je computer samen!");
 		ComputerSystem computerSystem = new ComputerSystem();
@@ -20,7 +20,7 @@ public class ComputerSystemConfigurator {
 			System.out.println("Kies uw behuizing (geef artikelnummer): ");
 			displayComputerCases();
 			String artikelnummer = keyboard.nextLine();
-			ComputerComponent chosen = getComputerComponent(artikelnummer);
+			ComputerPart chosen = getComputerComponent(artikelnummer);
 			if (chosen instanceof ComputerCase) {
 				computerSystem.setComputerCase((ComputerCase) chosen);
 			}
@@ -29,7 +29,7 @@ public class ComputerSystemConfigurator {
 			System.out.println("Kies uw processor (geef artikelnummer): ");
 			displayProcessors();
 			String artikelnummer = keyboard.nextLine();
-			ComputerComponent chosen = getComputerComponent(artikelnummer);
+			ComputerPart chosen = getComputerComponent(artikelnummer);
 			if (chosen instanceof Processor) {
 				computerSystem.setProcessor((Processor) chosen);
 			}
@@ -40,7 +40,7 @@ public class ComputerSystemConfigurator {
 			System.out.println("Kies een randapparaat (geef artikelnummer): ");
 			displayPeripherals();
 			String artikelnummer = keyboard.nextLine();
-			ComputerComponent chosen = getComputerComponent(artikelnummer);
+			ComputerPart chosen = getComputerComponent(artikelnummer);
 			if (chosen instanceof Peripheral) {
 				computerSystem.addPeripheral((Peripheral) chosen);
 			}
@@ -54,7 +54,7 @@ public class ComputerSystemConfigurator {
 	}
 
 	public static void displayComputerCases() {
-		for (ComputerComponent component : Warehouse.computerComponents) {
+		for (ComputerPart component : Warehouse.computerParts) {
 			if (component instanceof ComputerCase) {
 				System.out.println(component.getShortDescription());
 			}
@@ -62,7 +62,7 @@ public class ComputerSystemConfigurator {
 	}
 	
 	public static void displayProcessors() {
-		for (ComputerComponent component : Warehouse.computerComponents) {
+		for (ComputerPart component : Warehouse.computerParts) {
 			if (component instanceof Processor) {
 				System.out.println(component.getShortDescription());
 			}
@@ -70,15 +70,15 @@ public class ComputerSystemConfigurator {
 	}
 	
 	public static void displayPeripherals() {
-		for (ComputerComponent component : Warehouse.computerComponents) {
+		for (ComputerPart component : Warehouse.computerParts) {
 			if (component instanceof Peripheral) {
 				System.out.println(component.getShortDescription());
 			}
 		}
 	}
 
-	public static ComputerComponent getComputerComponent(String artikelnummer) {
-		for (ComputerComponent component : Warehouse.computerComponents) {
+	public static ComputerPart getComputerComponent(String artikelnummer) {
+		for (ComputerPart component : Warehouse.computerParts) {
 			if (component.getArticleNumber().equals(artikelnummer)) {
 				return component;
 			}
